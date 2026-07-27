@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -111,7 +111,7 @@
             z-index: 2;
         }
 
-        /* Premium Cybersecurity Animated Background Framework */
+        /* Premium Cybersecurity Animated Global Layer */
         .cyber-bg-layer {
             position: fixed;
             inset: 0;
@@ -120,34 +120,14 @@
             overflow: hidden;
         }
 
-        /* Visible Grid */
-        .bg-grid {
+        #node-canvas {
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(to right, rgba(16, 185, 129, 0.07) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(16, 185, 129, 0.07) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            animation: gridMove 20s linear infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 50px; }
-        }
-
-        /* Soft Scanlines */
-        .scanlines {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            z-index: 3;
+            width: 100%;
+            height: 100%;
             opacity: 0.3;
         }
 
-        /* Faint Binary & Terminal Code Streams */
         .code-stream {
             position: absolute;
             top: -100px;
@@ -162,44 +142,6 @@
         @keyframes codeFall {
             0% { transform: translateY(-100px); }
             100% { transform: translateY(110vh); }
-        }
-
-        /* Floating Network Nodes Canvas */
-        #node-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.4;
-        }
-
-        /* Slow Radar Sweep Effect */
-        .radar-sweep {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            height: 600px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            animation: radarPulse 25s ease-in-out infinite;
-        }
-
-        @keyframes radarPulse {
-            0%, 90% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
-            92% { opacity: 0.07; }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
-        }
-
-        .radar-sweep::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
         /* Minimal Header */
@@ -221,7 +163,6 @@
             height: 70px;
         }
 
-        /* Logo */
         .logo {
             font-weight: 800;
             font-size: 20px;
@@ -264,11 +205,107 @@
             color: var(--text-main);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
+        /* ==================== SECTION SPECIFIC BACKGROUNDS ==================== */
+        section {
+            padding: 90px 0;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
         }
 
+        /* 1. HERO BG: Perspective Moving Cyber Grid */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 70%), var(--bg);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(800px) rotateX(60deg) translateY(-80px) scale(2);
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 40px; }
+        }
+
+        /* 2. ABOUT BG: Soft Scanning Lines */
+        #about {
+            background: linear-gradient(180deg, #090a0f 0%, #0d1017 100%);
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(16, 185, 129, 0.03) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+
+        /* 3. QUOTE BG: Glowing Central Radar Pulse */
+        .quote-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, rgba(9, 10, 15, 1) 75%);
+        }
+
+        .quote-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 4. CORE STRENGTHS BG: Subtle Dot Matrix */
+        #skills {
+            background-color: #0b0d12;
+            background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* 5. TOOLS BG: Dark Tactical Command Gradient */
+        #tools {
+            background: linear-gradient(135deg, #090a0f 0%, #11151c 50%, #090a0f 100%);
+            border-top: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        /* 6. PROJECTS BG: Subtle Circuit Blueprint Grid */
+        #projects {
+            background: #0a0c10;
+            background-image: 
+                linear-gradient(rgba(30, 34, 45, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 34, 45, 0.5) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* 7. CERTIFICATIONS BG: Dual Radial Side-Lights */
+        #certifications {
+            background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        #08090d;
+        }
+
+        /* 8. CONTACT BG: Cyber Mesh Grid */
+        #contact {
+            background: linear-gradient(180deg, #08090d 0%, #0c1017 100%);
+            background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1.5px, transparent 1.5px);
+            background-size: 18px 18px;
+        }
+
+        /* Content Styling */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -373,12 +410,6 @@
             box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);
         }
 
-        /* Section Layouts */
-        section {
-            padding: 80px 0;
-            border-top: 1px solid var(--border);
-        }
-
         .section-header {
             margin-bottom: 48px;
         }
@@ -395,7 +426,6 @@
             font-size: 15px;
         }
 
-        /* Static About Box */
         .about-box {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -407,7 +437,125 @@
             margin-bottom: 24px;
         }
 
-        /* Disclosure Card */
+        /* Terminal Console */
+        .terminal-console {
+            background: rgba(17, 19, 24, 0.85);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .terminal-header {
+            background: #0d0e13;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-subtle);
+            letter-spacing: 0.5px;
+        }
+
+        .terminal-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .tool-category {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .category-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border-accent), transparent);
+        }
+
+        .tool-pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tool-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .tool-pill:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.15);
+        }
+
+        .tool-pill-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tool-pill-icon img, .tool-pill-icon svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tool-pill-name {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
         .disclosure-card {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--surface) 100%);
             border: 1px solid rgba(16, 185, 129, 0.25);
@@ -443,22 +591,6 @@
             white-space: nowrap;
         }
 
-        /* Quote Section */
-        .quote-section {
-            padding: 80px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .quote-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .quote-text {
             font-family: var(--font-sans);
             font-size: clamp(18px, 2.5vw, 22px);
@@ -471,20 +603,12 @@
             margin: 0 auto;
         }
 
-        /* Card Grids */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        /* Side-by-Side Education & Certification Layout */
         .split-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -516,7 +640,6 @@
             gap: 20px;
         }
 
-        /* Standard Minimal Card */
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -553,7 +676,6 @@
             line-height: 1.6;
         }
 
-        /* Project Links */
         .card-links {
             display: flex;
             gap: 16px;
@@ -577,7 +699,6 @@
             color: var(--accent);
         }
 
-        /* Contact Section */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -628,13 +749,13 @@
             transform: scale(1.2);
         }
 
-        /* Footer */
         footer {
             padding: 40px 0;
             border-top: 1px solid var(--border);
             text-align: center;
             font-size: 13px;
             color: var(--text-subtle);
+            background: #06070a;
         }
 
         @media (max-width: 850px) {
@@ -659,22 +780,23 @@
                 grid-template-columns: 1fr;
             }
         }
-        .finding-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
 
-.finding-tag {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 6px 12px;
-    border-radius: 6px;
-}
+        .finding-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .finding-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -689,10 +811,7 @@
 
     <!-- Premium Cybersecurity Animated Background Framework -->
     <div class="cyber-bg-layer" id="parallax-bg">
-        <div class="bg-grid"></div>
-        <div class="scanlines"></div>
         <canvas id="node-canvas"></canvas>
-        <div class="radar-sweep"></div>
         <div class="code-stream" style="left: 10%; animation-duration: 12s; animation-delay: 0s;">01100010 01110101 01100111</div>
         <div class="code-stream" style="left: 30%; animation-duration: 16s; animation-delay: 3s;">nmap -sS -p- 192.168.1.1</div>
         <div class="code-stream" style="left: 55%; animation-duration: 14s; animation-delay: 1s;">SELECT * FROM users WHERE id=1;</div>
@@ -711,6 +830,7 @@
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#tools">Tools</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certifications">Education & Certs</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -758,18 +878,18 @@
                 <div class="disclosure-card">
                     <div class="disclosure-info">
                         <h4>Verified Government Security Disclosure</h4>
-                            <p>
-                                Successfully identified and responsibly reported security vulnerabilities in
-                                <strong>Kerala State Government web infrastructure</strong> through
-                                <strong>CERT-In</strong>.
-                            </p>
+                        <p>
+                            Successfully identified and responsibly reported security vulnerabilities in
+                            <strong>Kerala State Government web infrastructure</strong> through
+                            <strong>CERT-In</strong>.
+                        </p>
 
-                            <div class="finding-tags">
-                                <span class="finding-tag">Exposed Configuration Files</span>
-                                <span class="finding-tag">Broken Access Control</span>
-                                <span class="finding-tag">End-of-Life Drupal Version</span>
-                            </div>
+                        <div class="finding-tags">
+                            <span class="finding-tag">Exposed Configuration Files</span>
+                            <span class="finding-tag">Broken Access Control</span>
+                            <span class="finding-tag">End-of-Life Drupal Version</span>
                         </div>
+                    </div>
 
                     <span class="disclosure-tag">CERT-In Reported -> Resolved</span>
                 </div>
@@ -792,30 +912,167 @@
                     <h2 class="section-title">Core Strengths</h2>
                     <p class="section-subtitle">Technical focus and specialized domains</p>
                 </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3 class="card-title">Vulnerability Assessment & Penetration Testing (VAPT)</h3>
-                        <p class="card-desc">Identifying, validating, and reporting security vulnerabilities through comprehensive security assessments.</p>
+
+                <style>
+                    .fluid-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+
+                    .fluid-item {
+                        padding: 12px 0 12px 24px;
+                        border-left: 2px solid rgba(16, 185, 129, 0.3);
+                        transition: all 0.3s ease;
+                    }
+
+                    .fluid-item:hover {
+                        border-left-color: var(--accent);
+                        padding-left: 36px;
+                    }
+
+                    .fluid-item h3 {
+                        font-size: 18px;
+                        font-weight: 700;
+                        color: var(--text-main);
+                        margin-bottom: 4px;
+                    }
+
+                    .fluid-item p {
+                        font-size: 14px;
+                        color: var(--text-muted);
+                        line-height: 1.6;
+                        max-width: 680px;
+                    }
+                </style>
+
+                <div class="fluid-list">
+                    <div class="fluid-item">
+                        <h3>Vulnerability Assessment & Penetration Testing</h3>
+                        <p>Identifying, validating, and reporting security vulnerabilities through comprehensive security assessments.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">SOC Operations</h3>
-                        <p class="card-desc">Monitoring security events, analyzing threats, and responding to incidents to protect organizational systems.</p>
+
+                    <div class="fluid-item">
+                        <h3>SOC Operations</h3>
+                        <p>Monitoring security events, analyzing threats, and responding to incidents to protect organizational systems.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">Bug Bounty Hunting</h3>
-                        <p class="card-desc">Active vulnerability research on platforms like HackerOne and huntr, adhering to responsible disclosure.</p>
+
+                    <div class="fluid-item">
+                        <h3>Bug Bounty Hunting</h3>
+                        <p>Active vulnerability research on platforms like HackerOne and huntr, adhering to responsible disclosure.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">Web Application Security</h3>
-                        <p class="card-desc">In-depth security analysis and mitigation strategies for modern web application vulnerabilities.</p>
+
+                    <div class="fluid-item">
+                        <h3>Web Application Security</h3>
+                        <p>In-depth security analysis and mitigation strategies for modern web application vulnerabilities.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">Network Security</h3>
-                        <p class="card-desc">Securing networks through traffic analysis, protocol understanding, and identifying network-based threats.</p>
+
+                    <div class="fluid-item">
+                        <h3>Network Security</h3>
+                        <p>Securing networks through traffic analysis, protocol understanding, and identifying network-based threats.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">Threat Intelligence</h3>
-                        <p class="card-desc">Collecting, analyzing, and interpreting threat data to identify emerging cyber threats and support proactive defense.</p>
+
+                    <div class="fluid-item">
+                        <h3>Threat Intelligence</h3>
+                        <p>Collecting, analyzing, and interpreting threat data to identify emerging cyber threats and support proactive defense.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools & Technologies (Terminal Command Console) -->
+        <section id="tools">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Tools & Technologies</h2>
+                    <p class="section-subtitle">Operational technical stack and security platforms</p>
+                </div>
+
+                <div class="terminal-console">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <div class="terminal-title">SECURITY_TOOLKIT_v2.4 [Operational]</div>
+                    </div>
+                    
+                    <div class="terminal-body">
+                        <!-- Category 1: Offensive & Recon -->
+                        <div class="tool-category">
+                            <span class="category-label">[+] Offensive Security & VAPT</span>
+                            <div class="tool-pill-container">
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <img src="https://cdn.simpleicons.org/kalilinux/10b981" alt="Kali Linux">
+                                    </div>
+                                    <span class="tool-pill-name">Kali Linux</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <img src="https://cdn.simpleicons.org/burpsuite/10b981" alt="Burp Suite">
+                                    </div>
+                                    <span class="tool-pill-name">Burp Suite Pro</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <svg viewBox="0 0 24 24" fill="#10b981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                    </div>
+                                    <span class="tool-pill-name">Nmap</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <svg viewBox="0 0 24 24" fill="#10b981"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                                    </div>
+                                    <span class="tool-pill-name">Gobuster</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <svg viewBox="0 0 24 24" fill="#10b981"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                                    </div>
+                                    <span class="tool-pill-name">sqlmap</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category 2: Defensive & SOC -->
+                        <div class="tool-category">
+                            <span class="category-label">[+] Defensive Infrastructure & SOC</span>
+                            <div class="tool-pill-container">
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <img src="https://cdn.simpleicons.org/wireshark/10b981" alt="Wireshark">
+                                    </div>
+                                    <span class="tool-pill-name">Wireshark</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <img src="https://cdn.simpleicons.org/splunk/10b981" alt="Splunk">
+                                    </div>
+                                    <span class="tool-pill-name">Splunk</span>
+                                </div>
+                              
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <svg viewBox="0 0 24 24" role="img"><circle cx="12" cy="12" r="10" fill="#10B981"/><path fill="#090A0F" d="M7.5 8l2 8h1.5l1.2-5 1.2 5h1.5l2-8h-1.3l-1.3 6.2L12 8h-1l-1.3 6.2L8.8 8H7.5z"/></svg>
+                                    </div>
+                                    <span class="tool-pill-name">Wazuh</span>
+                                </div>
+
+                                <div class="tool-pill">
+                                    <div class="tool-pill-icon">
+                                        <svg viewBox="0 0 24 24" fill="#10b981"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                                    </div>
+                                    <span class="tool-pill-name">Snort</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -829,7 +1086,6 @@
                     <p class="section-subtitle">Practical security implementations and simulations</p>
                 </div>
                 <div class="grid-2">
-                    <!-- Project 1 -->
                     <div class="card">
                         <div>
                             <div class="card-meta">2026 • IDS / Network Security</div>
@@ -841,7 +1097,6 @@
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
                     <div class="card">
                         <div>
                             <div class="card-meta">2026 • Phishing / Threat Analysis</div>
@@ -853,7 +1108,6 @@
                         </div>
                     </div>
 
-                    <!-- Project 3 -->
                     <div class="card">
                         <div>
                             <div class="card-meta">2025 • Access Control</div>
@@ -865,7 +1119,7 @@
             </div>
         </section>
 
-        <!-- Education & Certifications Section (Side-by-Side) -->
+        <!-- Education & Certifications Section -->
         <section id="certifications">
             <div class="container">
                 <div class="section-header">
@@ -874,7 +1128,6 @@
                 </div>
                 
                 <div class="split-layout">
-                    <!-- Left Column: Education -->
                     <div>
                         <h3 class="split-column-title">Education</h3>
                         <div class="card-stack">
@@ -886,7 +1139,7 @@
                             <div class="card">
                                 <div class="card-meta">Degree • 2022 – 2025</div>
                                 <h3 class="card-title">BCA</h3>
-                                <p class="card-desc">Bachelor of Computer Applications  - Indira Gandhi College of Arts & Science</p>
+                                <p class="card-desc">Bachelor of Computer Applications - Indira Gandhi College of Arts & Science</p>
                             </div>
                             <div class="card">
                                 <div class="card-meta">Add-on Course • 2024 – 2025</div>
@@ -896,7 +1149,6 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Certifications & Internships -->
                     <div>
                         <h3 class="split-column-title">Certifications & Experience</h3>
                         <div class="card-stack">
@@ -918,7 +1170,7 @@
                             <div class="card">
                                 <div class="card-meta">Virtual Internship • 2025</div>
                                 <h3 class="card-title">Cyber Security with AI</h3>
-                                <p class="card-desc">Earned Internship certificate & Cisco cybersecurity certifications - NIIT Foundation & Cicso NetAcad </p>
+                                <p class="card-desc">Earned Internship certificate & Cisco cybersecurity certifications - NIIT Foundation & Cisco NetAcad</p>
                             </div>
                         </div>
                     </div>
@@ -934,7 +1186,6 @@
                     <p class="section-subtitle">Direct channels for communication</p>
                 </div>
                 <div class="contact-grid">
-                    <!-- Email Card -->
                     <a href="mailto:adithyanv783@gmail.com" class="contact-card">
                         <div class="contact-header">
                             <span class="contact-label">Email</span>
@@ -942,7 +1193,6 @@
                         </div>
                     </a>
 
-                    <!-- LinkedIn Card -->
                     <a href="https://www.linkedin.com/in/adithyan-v-" target="_blank" rel="noopener" class="contact-card">
                         <div class="contact-header">
                             <span class="contact-label">LinkedIn</span>
@@ -950,7 +1200,6 @@
                         </div>
                     </a>
 
-                    <!-- TryHackMe Card -->
                     <a href="https://tryhackme.com/p/adthynv" target="_blank" rel="noopener" class="contact-card">
                         <div class="contact-header">
                             <span class="contact-label">TryHackMe</span>
@@ -958,7 +1207,6 @@
                         </div>
                     </a>
 
-                    <!-- GitHub Card -->
                     <a href="https://github.com/adithyanjkr" target="_blank" rel="noopener" class="contact-card">
                         <div class="contact-header">
                             <span class="contact-label">GitHub</span>
@@ -966,7 +1214,6 @@
                         </div>
                     </a>
 
-                    <!-- Instagram Card -->
                     <a href="https://www.instagram.com/adithyan.jkr" target="_blank" rel="noopener" class="contact-card">
                         <div class="contact-header">
                             <span class="contact-label">Instagram</span>
@@ -985,9 +1232,8 @@
         </div>
     </footer>
 
-    <!-- Interactive Scripts: Scroll Progress, Scroll to Top, Parallax, Nodes & Quote Animation -->
+    <!-- Interactive Scripts -->
     <script>
-        // Scroll Progress Bar & Scroll To Top Visibility
         const progressBar = document.getElementById('scroll-progress');
         const scrollTopBtn = document.getElementById('scroll-top-btn');
 
@@ -1009,14 +1255,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Parallax Effect on Background
         const parallaxBg = document.getElementById('parallax-bg');
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             parallaxBg.style.transform = `translateY(${scrollY * 0.15}px)`;
         });
 
-        // Fade-in animation for Quote Section
         const quoteSection = document.getElementById('quote-section');
         if (quoteSection) {
             const observer = new IntersectionObserver((entries) => {
@@ -1031,7 +1275,6 @@
             observer.observe(quoteSection);
         }
 
-        // Floating Network Nodes Animation (Canvas 60 FPS)
         const canvas = document.getElementById('node-canvas');
         const ctx = canvas.getContext('2d');
 
