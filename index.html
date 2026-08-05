@@ -36,7 +36,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
             scroll-padding-top: 80px;
         }
 
@@ -1234,12 +1234,20 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lenis@1.3.13/dist/lenis.min.js"></script>
+
     <!-- Interactive Scripts -->
     <script>
+        const lenis = new Lenis({duration:1.5,lerp:0.08,smoothWheel:true,wheelMultiplier:0.9,touchMultiplier:1.2});
+        function raf(t){lenis.raf(t);requestAnimationFrame(raf);}requestAnimationFrame(raf);
+        document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+          const t=document.querySelector(a.getAttribute('href')); if(!t)return;
+          e.preventDefault(); lenis.scrollTo(t,{offset:-70,duration:1.3});
+        }));
         const progressBar = document.getElementById('scroll-progress');
         const scrollTopBtn = document.getElementById('scroll-top-btn');
 
-        window.addEventListener('scroll', () => {
+        lenis.on('scroll', () => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
@@ -1254,11 +1262,11 @@
 
         scrollTopBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            lenis.scrollTo(0,{duration:1.4});
         });
 
         const parallaxBg = document.getElementById('parallax-bg');
-        window.addEventListener('scroll', () => {
+        lenis.on('scroll', () => {
             const scrollY = window.scrollY;
             parallaxBg.style.transform = `translateY(${scrollY * 0.15}px)`;
         });
