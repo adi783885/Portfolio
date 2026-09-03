@@ -382,11 +382,6 @@
             transition: all 0.2s ease;
         }
 
-        .hero-tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
         .btn-group {
             display: flex;
             gap: 16px;
@@ -420,7 +415,7 @@
         .btn-secondary {
             background: var(--surface);
             color: var(--text-main);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             backdrop-filter: blur(10px);
         }
 
@@ -477,14 +472,9 @@
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 5px;
             backdrop-filter: blur(10px);
             transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-2px);
         }
 
         .stat-number {
@@ -502,27 +492,75 @@
         }
 
         /* ABOUT */
-        .about-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 36px;
-            font-size: 15.5px;
-            color: var(--text-muted);
-            line-height: 1.8;
-            backdrop-filter: blur(10px);
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+            gap: 68px;
+            align-items: center;
         }
 
+        .about-image {
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--surface);
+        }
+
+        .about-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), transparent 45%, rgba(0, 0, 0, 0.28));
+            pointer-events: none;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.84) contrast(1.04);
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.025);
+        }
+
+        .about-content {
+            min-width: 0;
+        }
+
+        .about-content .section-header {
+            margin-bottom: 24px;
+        }
+
+        .about-content .section-title {
+            margin-bottom: 10px;
+        }
+
+        .about-box {
+            font-size: 15.5px;
+            color: var(--text-muted);
+            line-height: 1.9;
+            max-width: 680px;
+        }
         /* ACHIEVEMENTS (HEADINGS + GREEN 01/ NUMBERS) */
         .achievements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 10px;
         }
 
         .achievement-card {
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             border-radius: 12px;
             padding: 28px;
             backdrop-filter: blur(10px);
@@ -569,14 +607,14 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
             background: var(--border);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
         }
 
         .strength-cell {
-            background: var(--bg);
+            background: var(--surface);
             padding: 34px 28px;
             position: relative;
             display: flex;
@@ -584,10 +622,6 @@
             justify-content: space-between;
             min-height: 230px;
             transition: background 0.3s ease;
-        }
-
-        .strength-cell:hover {
-            background: rgba(22, 27, 38, 0.95);
         }
 
         .strength-cell-top {
@@ -637,12 +671,12 @@
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            gap: 14px;
         }
 
         .tools-card {
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             border-radius: 12px;
             padding: 28px;
             backdrop-filter: blur(10px);
@@ -803,7 +837,7 @@
             margin-bottom: 24px;
             padding: 22px 26px;
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             border-radius: 12px;
             backdrop-filter: blur(10px);
         }
@@ -936,63 +970,63 @@
             filter: brightness(1.05);
         }
 
-/* EXPERIENCE TIMELINE */
-.exp-timeline-wrapper {
-    position: relative;
-    padding-left: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
+        /* EXPERIENCE TIMELINE */
+        .exp-timeline-wrapper {
+            position: relative;
+            padding-left: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
 
-.exp-timeline-wrapper::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 6px;
-    bottom: 6px;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.12);
-}
+        .exp-timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            bottom: 6px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.12);
+        }
 
-.exp-entry {
-    position: relative;
-}
+        .exp-entry {
+            position: relative;
+        }
 
-.exp-node {
-    position: absolute;
-    left: -36px;
-    top: 5px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent-glow);
-}
+        .exp-node {
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
 
-.exp-date {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-}
+        .exp-date {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
 
-.exp-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-    letter-spacing: -0.3px;
-    margin-bottom: 12px;
-}
+        .exp-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+        }
 
-.exp-desc {
-    font-size: 14.5px;
-    color: var(--text-muted);
-    line-height: 1.7;
-    max-width: 950px;
-}
+        .exp-desc {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 950px;
+        }
 
         /* CONTACT */
         .contact-grid {
@@ -1003,7 +1037,7 @@
 
         .contact-card {
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: px solid var(--border);
             border-radius: 10px;
             padding: 24px;
             text-decoration: none;
@@ -1055,6 +1089,8 @@
 
         @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; }
+            .about-layout { grid-template-columns: 1fr; gap: 42px; }
+            .about-image { min-height: 380px; max-width: 680px; }
             .strengths-matrix { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -1065,6 +1101,8 @@
             .hero { padding: 130px 0 60px; }
             .cert-grid { justify-content: center; }
             .strengths-matrix { grid-template-columns: 1fr; }
+            .about-image { min-height: 300px; }
+            .about-box { font-size: 15px; line-height: 1.8; }
             .exp-dossier { padding: 20px; }
         }
     </style>
@@ -1158,9 +1196,9 @@
                         </div>
                         <div class="terminal-body" id="hero-terminal-body">
                             <div><span class="t-prompt">visitor@sec-node:~$</span> <span class="t-cmd">whoami</span></div>
-                            <div class="t-output">adithyan_v [security_researcher]</div>
-                            <div><span class="t-prompt">visitor@sec-node:~$</span> <span class="t-cmd">cat certs.log</span></div>
-                            <div class="t-output">EC-Council CSA v2 | RedTeam CICSA v3</div>
+                            <div class="t-output">adithyan_v | Security Researcher</div>
+                            <div><span class="t-prompt">visitor@sec-node:~$</span> <span class="t-cmd">cat principles.txt</span></div>
+                            <div class="t-output">Learn • Research • Secure</div>
                             <div><span class="t-prompt">visitor@sec-node:~$</span> <span class="t-cmd">status</span></div>
                             <div class="t-output" style="color: var(--accent); margin-bottom: 0;">ready: SOC / VAPT deployments</div>
                         </div>
@@ -1173,12 +1211,12 @@
                         <div class="stat-label">Verified Disclosures</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">Top 4%</div>
-                        <div class="stat-label">TryHackMe Global Rank</div>
+                        <div class="stat-number">Kali Linux</div>
+                        <div class="stat-label">Attack Surface</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">Kali OS</div>
-                        <div class="stat-label">Attack Surface</div>
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Industry Certifications </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">24/7</div>
@@ -1190,13 +1228,23 @@
 
         <section id="about">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">About</h2>
-                    <p class="section-subtitle">Background &amp; Technical Focus</p>
-                </div>
-                
-                <div class="about-box">
-                    Cybersecurity Researcher and BCA graduate with a strong focus on offensive security, vulnerability research, and Security Operations. Experienced in penetration testing, red teaming, and identifying real-world security vulnerabilities, alongside practical exposure to SOC monitoring, threat detection, log analysis, SIEM technologies, and incident response. Leverages AI-assisted workflows to enhance security research and offensive testing. Driven by continuous learning and the practical application of both offensive and defensive cybersecurity techniques.
+                <div class="about-layout">
+
+                    <div class="about-image">
+                        <img src="images/about.jpg" alt="Cybersecurity workspace">
+                    </div>
+
+                    <div class="about-content">
+                        <div class="section-header">
+                            <h2 class="section-title">About</h2>
+                            <p class="section-subtitle">Background &amp; Technical Focus</p>
+                        </div>
+
+                        <div class="about-box">
+                            Cybersecurity Researcher and BCA graduate with a strong focus on offensive security, vulnerability research, and Security Operations. Experienced in penetration testing, red teaming, and identifying real-world security vulnerabilities, alongside practical exposure to SOC monitoring, threat detection, log analysis, SIEM technologies, and incident response. Leverages AI-assisted workflows to enhance security research and offensive testing. Driven by continuous learning and the practical application of both offensive and defensive cybersecurity techniques.
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -1256,7 +1304,7 @@
                             <span class="strength-category">Offensive</span>
                         </div>
                         <div>
-                            <h3>Vulnerability Assessment &amp; Penetration Testing</h3>
+                            <h3>Vulnerability Assessment &amp; Pentesting</h3>
                             <p>Identifying, validating, and reporting security vulnerabilities through comprehensive security assessments.</p>
                         </div>
                     </div>
@@ -1330,10 +1378,14 @@
                     <div class="tools-card">
                         <h3 class="tools-card-title">Offensive Security &amp; VAPT</h3>
                         <div class="tool-pill-container">
-                            <span class="tool-pill">Kali Linux</span>
                             <span class="tool-pill">Burp Suite Pro</span>
+                            <span class="tool-pill">OWASP Top 10</span>
                             <span class="tool-pill">sqlmap</span>
+                            <span class="tool-pill">Gobuster</span>
+                            <span class="tool-pill">HexStrike MCP</span>
                             <span class="tool-pill">Metasploit</span>
+                            <span class="tool-pill">GTFOBins</span>
+                            <span class="tool-pill">ExploitDB</span>
                         </div>
                     </div>
 
@@ -1343,6 +1395,10 @@
                             <span class="tool-pill">Splunk</span>
                             <span class="tool-pill">Wazuh</span>
                             <span class="tool-pill">Snort</span>
+                            <span class="tool-pill">Alert Triage</span>
+                            <span class="tool-pill">FIM</span>
+                            <span class="tool-pill">Playbook Development</span>
+                            <span class="tool-pill">IOC</span>
                         </div>
                     </div>
 
@@ -1352,7 +1408,10 @@
                             <span class="tool-pill">Nmap</span>
                             <span class="tool-pill">Wireshark</span>
                             <span class="tool-pill">Cisco Packet Tracer</span>
-                            <span class="tool-pill">Tcpdump</span>
+                            <span class="tool-pill">Bettercap</span>
+                            <span class="tool-pill">DNS</span>
+                            <span class="tool-pill">Firewall</span>
+                            <span class="tool-pill">TCP/IP</span> 
                         </div>
                     </div>
 
@@ -1361,8 +1420,34 @@
                         <div class="tool-pill-container">
                             <span class="tool-pill">AbuseIPDB</span>
                             <span class="tool-pill">VirusTotal</span>
-                            <span class="tool-pill">MXToolbox</span>
+                            <span class="tool-pill">URLScan.io</span>
                             <span class="tool-pill">Shodan</span>
+                            <span class="tool-pill">MITRE ATT&CK</span>
+                            <span class="tool-pill">Dark Web OSINT</span>
+                        </div>
+                    </div>
+                    <div class="tools-card">
+                        <h3 class="tools-card-title">Malware Analysis</h3>
+                        <div class="tool-pill-container">
+                            <span class="tool-pill">Strings</span>
+                            <span class="tool-pill">MalwareBazaar</span>
+                            <span class="tool-pill">Ghidra</span>
+                            <span class="tool-pill">Exiftool</span>
+                            <span class="tool-pill">Detect It Easy</span>
+                            <span class="tool-pill">Binwalk</span>
+                            <span class="tool-pill">objdump</span>
+                        </div>
+                    </div>
+                    <div class="tools-card">
+                        <h3 class="tools-card-title">Linux & Infrastructure</h3>
+                        <div class="tool-pill-container">
+                            <span class="tool-pill">kali Linux</span>
+                            <span class="tool-pill">OpenSSH</span>
+                            <span class="tool-pill">Apache2</span>
+                            <span class="tool-pill">Ubuntu</span>
+                            <span class="tool-pill">UFW</span>
+                            <span class="tool-pill">Debian</span>
+                            <span class="tool-pill">Playwright MCP</span>
                         </div>
                     </div>
                 </div>
@@ -1410,7 +1495,7 @@
 
                     <div class="card project-card">
                         <div class="project-img-wrapper">
-                            <img src="images/phishing.jpg" alt="Phishing Threat Detection" class="project-img">
+                            <img src="images/phishing.png" alt="Phishing Threat Detection" class="project-img">
                         </div>
                         <div class="project-content">
                             <div>
@@ -1438,14 +1523,13 @@
                     <div class="pipeline-entry">
                         <div class="pipeline-node"></div>
                         <div class="pipeline-header">
-                            <span class="pipeline-epoch">2026</span>
-                            <h3 class="pipeline-title">Certified IT Infrastructure &amp; Cyber SOC Analyst (CICSA)</h3>
+                            <span class="pipeline-epoch">2025 - 2026</span>
+                            <h3 class="pipeline-title">Certified IT Infrastructure &amp; Cyber SOC Analyst</h3>
                         </div>
                         <p class="pipeline-institution">RedTeam Hacker Academy</p>
                         <div class="pipeline-telemetry">
                             <span class="telemetry-tag">SOC Tier 1/2 Operations</span>
                             <span class="telemetry-tag">Ethical hacking &amp; VAPT</span>
-                            <span class="telemetry-tag">Threat Detection</span>
                         </div>
                     </div>
 
@@ -1466,11 +1550,10 @@
                         <div class="pipeline-node"></div>
                         <div class="pipeline-header">
                             <span class="pipeline-epoch">2022 – 2025</span>
-                            <h3 class="pipeline-title">Bachelor of Computer Applications (BCA)</h3>
+                            <h3 class="pipeline-title">Bachelor of Computer Applications</h3>
                         </div>
                         <p class="pipeline-institution">Indira Gandhi College of Arts &amp; Science</p>
                         <div class="pipeline-telemetry">
-                            <span class="telemetry-tag">Computer Systems</span>
                             <span class="telemetry-tag">Networking Protocols</span>
                             <span class="telemetry-tag">Operating System Architecture</span>
                         </div>
@@ -1498,6 +1581,11 @@
                             <img src="certificates/cicsa.jpeg" alt="RedTeam Hacker Academy CICSA Certification" class="cert-img">
                         </div>
                     </div>
+                    <div class="cert-card">
+                        <div class="cert-img-slot">
+                            <img src="certificates/python.jpg" alt="Python Programming Certification" class="cert-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1513,7 +1601,7 @@
             <!-- Previous Internships in Matching Style -->
             <div class="exp-entry">
                 <div class="exp-node"></div>
-                <div class="exp-date">Jan 2026 - Feb 2026</div>
+                <div class="exp-date">May 2026</div>
                 <h3 class="exp-title">Cyber Security Intern</h3>
                 <p>Future Interns</p>
                 <p class="exp-desc">
@@ -1523,11 +1611,11 @@
 
             <div class="exp-entry">
                 <div class="exp-node"></div>
-                <div class="exp-date">2025</div>
+                <div class="exp-date">August 2025</div>
                 <h3 class="exp-title">Cyber Security with AI Intern</h3>
                 <p>NIIT Foundation &amp; Cisco NetAcad</p>
                 <p class="exp-desc">
-                    Completed a Cybersecurity Internship with hands-on Cisco enterprise network design, packet routing audits, and earned 3 Cisco certifications.
+                    Completed a 1-month Cyber Security Internship with hands-on Cisco enterprise network design, packet routing audits, and earned 3 Cisco certifications.
                 </p>
             </div>
         </div>
@@ -1582,9 +1670,9 @@
     <script>
         const roles = [
             "Offensive Security & SOC Operations",
-            "Vulnerability Assessment & Pen Testing",
-            "Threat Intelligence & Incident Response",
-            "Web Security Research"
+            "SOC Analyst",
+            "Vulnerability Assessment & Pentesting",
+            "Linux Engineer",
         ];
         
         let roleIndex = 0;
@@ -1684,7 +1772,7 @@
                     ctx.fill();
 
                     for (let j = i + 1; j < nodes.length; j++) {
-                        const dx = nodes[j].x - node.x;
+                        const dx = nodes[j].x - node.x; 
                         const dy = nodes[j].y - node.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
 
